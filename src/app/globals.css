@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #050508; /* Luxury Deep Obsidian */
+  --color-foreground: #ffffff;
+  --color-primary: #ffffff;
+  --color-accent: #11111a; 
+  
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: "Space Mono", "monospace";
+}
+
+@layer base {
+  :root {
+    --film-fade: rgba(5, 5, 8, 0.8);
+    --light-leak: linear-gradient(135deg, rgba(79, 70, 229, 0.1), transparent 50%), 
+                  linear-gradient(225deg, rgba(147, 51, 234, 0.05), transparent 50%);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    overflow-x: hidden;
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Force Hardware Acceleration for everything to stop Jitter */
+  * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  /* Specifically optimize moving heavy elements */
+  .cinematic-canvas, .featured-showcase, .horizontal-timeline {
+    will-change: transform, opacity;
+  }
+
+  /* Cinematic Lens Blur */
+  .lens-blur {
+    filter: blur(40px);
+    opacity: 0.3;
+  }
+
+  /* Smooth Scroll Utility */
+  .lenis.lenis-smooth {
+    height: auto;
+  }
+
+  /* Custom Selection */
+  ::selection {
+    background: white;
+    color: black;
+  }
+}
+
+@layer components {
+  .cinematic-text {
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  .film-cut-fade {
+    animation: filmFade 1s ease-in-out forwards;
+  }
+
+  @keyframes filmFade {
+    from { opacity: 0; transform: scale(1.05); filter: blur(10px); }
+    to { opacity: 1; transform: scale(1); filter: blur(0); }
+  }
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
