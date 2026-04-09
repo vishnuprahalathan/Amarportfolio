@@ -53,5 +53,19 @@ export const VIDEOS = {
       thumbnail: "/images/portrait.jpg",
       role: "Creative Editor",
     },
+    {
+      title: "Mirror Echo",
+      type: "Music Video",
+      preview: "/videos/project7.mp4",
+      thumbnail: "/images/portrait.jpg",
+      role: "Music Edit",
+    },
+    {
+      title: "Velvet Cut",
+      type: "Brand Film",
+      preview: "/videos/project8.mp4",
+      thumbnail: "/images/portrait.jpg",
+      role: "Creative Director",
+    },
   ]
 };

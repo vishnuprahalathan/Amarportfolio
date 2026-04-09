@@ -20,8 +20,11 @@ function NetflixRow({ title, projects, startIndex }: RowProps) {
       </div>
 
       {/* Horizontal scroll row */}
-      <div className="flex gap-4 overflow-x-auto px-6 pb-4 snap-x snap-mandatory"
-        style={{ scrollbarWidth: "none" }}>
+      <div
+        className="flex gap-4 overflow-x-auto overflow-y-hidden px-6 pb-4 snap-x snap-mandatory touch-pan-x"
+        data-lenis-prevent
+        style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}
+      >
         {projects.map((project, i) => (
           <div
             key={i}
@@ -37,9 +40,15 @@ function NetflixRow({ title, projects, startIndex }: RowProps) {
 
 export default function CinematicProjects() {
   const all = VIDEOS.projects;
-  // Split: non-social in row 1, rest in row 2
-  const row1 = all.filter(p => !p.type.toLowerCase().includes("social"));
-  const row2 = all.filter(p => p.type.toLowerCase().includes("social") || p.type.toLowerCase().includes("commercial"));
+  // Split uniquely: row 1 shows core narratives, row 2 shows social / commercial work
+  const row1 = all.filter(p => {
+    const type = p.type.toLowerCase();
+    return !type.includes("social") && !type.includes("commercial");
+  });
+  const row2 = all.filter(p => {
+    const type = p.type.toLowerCase();
+    return type.includes("social") || type.includes("commercial");
+  });
 
   return (
     <section id="work" className="py-24 bg-black">

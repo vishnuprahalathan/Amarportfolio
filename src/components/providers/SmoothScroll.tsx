@@ -11,14 +11,15 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
     gsap.registerPlugin(ScrollTrigger);
     
     const lenis = new Lenis({
-      duration: 2.2, 
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+      duration: 2.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      gestureOrientation: 'both',
+      allowNestedScroll: true,
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
-      lerp: 0.05, 
+      lerp: 0.05,
       infinite: false,
     });
     
@@ -40,10 +41,13 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
 
   return (
     <ReactLenis root options={{ 
-      lerp: 0.05, 
+      lerp: 0.05,
       duration: 2.2,
+      orientation: 'vertical',
+      gestureOrientation: 'both',
+      allowNestedScroll: true,
       smoothWheel: true,
-      syncTouch: true
+      syncTouch: true,
     }}>
       {children}
     </ReactLenis>
