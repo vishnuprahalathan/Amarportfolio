@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScroll";
 import { ShowreelProvider } from "@/components/providers/ShowreelProvider";
 import DynamicTitle from "@/components/ui/DynamicTitle";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
             {children}
           </SmoothScrollProvider>
         </ShowreelProvider>
+        <Analytics />
       </body>
     </html>
   );
